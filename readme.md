@@ -1,7 +1,6 @@
 # BeLaundry
 
 ## Back-End
-
 ### API Endpoint 
 | Entity | Method | Route | Description |
 | ------- |------- | ----- | ----------- |
@@ -19,7 +18,6 @@ or
 $ DEBUG=belaundry-server:* nodemon start
 ```
 
-
 ## Front-End
 
 ### Path
@@ -35,8 +33,6 @@ $ DEBUG=belaundry-server:* nodemon start
 ```bash
 $ npm run start
 ```
-
-
 
 
 `Express.js` `MongoDB` `Node.js` 
