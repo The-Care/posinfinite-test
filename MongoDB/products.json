@@ -1,0 +1,45 @@
+[{
+  "_id": {
+    "$oid": "63db5d2f7f7bf0fd03ca08e7"
+  },
+  "name": "Tshirt",
+  "description": "Lorem ipsum balabalabalbala",
+  "sku": "DQU8OSR",
+  "stock": 10,
+  "category": "Dry Clean",
+  "price": 18,
+  "image_url": "6c2a060c720af81477eac22ae6898c45.png",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1675320623084"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1675320623084"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63db5e4a7f7bf0fd03ca08ed"
+  },
+  "name": "Jeans 101",
+  "description": "Lorem ipsum jeans jeansjeans jeans jeansjeans",
+  "sku": "ADW8PAQ",
+  "stock": 12,
+  "category": "Dry Clean",
+  "price": 28,
+  "image_url": "33a246511a5b245368b9e2afdf5eb066.png",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1675320906453"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1675320906453"
+    }
+  },
+  "__v": 0
+}]
