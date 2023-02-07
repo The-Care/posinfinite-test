@@ -38,7 +38,7 @@ export function ProductDetail({ route }) {
         </View>
         <View style={styles.infoContent}>
           <Text style={styles.name}>{product.name}</Text>
-          <Text style={styles.price}>$ {product.price}</Text>
+          <Text style={styles.price}>$ {product.price} /piece</Text>
           <Text style={styles.description}>{product.description}</Text>
           <Button onPress={onAddToInvoice} title="Add To Invoice" />
         </View>
