@@ -3,6 +3,7 @@ import { useFormik } from "formik";
 import axios from "axios";
 import { useState } from "react";
 import * as Yup from "yup";
+import Swal from "sweetalert2";
 
 export default function CreateProduct() {
   const [saveImage, setSaveImage] = useState([]);
@@ -44,8 +45,6 @@ export default function CreateProduct() {
       let formData = new FormData();
       formData.append("photo", saveImage[0]);
 
-      console.log(values, "val");
-
       axios
         .post(`http://localhost:3000/upload`, formData)
         .then((res) => {
@@ -61,17 +60,35 @@ export default function CreateProduct() {
         })
         .then((res) => {
           console.log("Add product successful");
+          Swal.fire({
+            title:
+              "Add new product successful, please see the update on mobile",
+            width: 600,
+            padding: "3em",
+            color: "#716add",
+            background: "#fff url(/images/trees.png)",
+            backdrop: `
+              rgba(0,0,123,0.4)
+              no-repeat
+            `,
+          });
         })
         .catch((error) => {
           console.error(error);
+          Swal.fire({
+            title: "Error!",
+            text: "Do you want to continue",
+            icon: "error",
+            confirmButtonText: "Cool",
+          });
         });
     },
   });
 
   return (
-    <form onSubmit={formik.handleSubmit}>
-      <div className="flex flex-row h-full">
-        <div className="basis-9/12 bg-[#CAECFF] max-h-full ">
+    <div className="flex flex-row h-full">
+      <div className="basis-9/12 bg-[#CAECFF] max-h-full ">
+        <form onSubmit={formik.handleSubmit}>
           <div className="ml-12 mr-12">
             <h1 className="mb-12 mt-12 font-extrabold text-5xl">
               Add New Product
@@ -195,45 +212,45 @@ export default function CreateProduct() {
               </button>
             </div>
           </div>
-        </div>
-        <div className="basis-3/12 bg-[#E7F5FD] h-full">
-          <div class="flex items-center justify-center w-full mt-5">
-            <label
-              for="dropzone-file"
-              class="flex flex-col items-center justify-center w-11/12 h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
-            >
-              <div class="flex flex-col items-center justify-center pt-5 pb-6">
-                <svg
-                  aria-hidden="true"
-                  class="w-10 h-10 mb-3 text-gray-400"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
-                  ></path>
-                </svg>
-                <p class="mb-2 text-sm text-gray-500 dark:text-gray-400">
-                  <span class="font-semibold">Upload image here</span>
-                </p>
-              </div>
-              <input
-                id="dropzone-file"
-                type="file"
-                class="hidden"
-                onChange={handleImageUpload}
-                enctype="multipart/form-data"
-                name="photo"
-              />
-            </label>
-          </div>
+        </form>
+      </div>
+      <div className="basis-3/12 bg-[#E7F5FD] h-full">
+        <div class="flex items-center justify-center w-full mt-5">
+          <label
+            for="dropzone-file"
+            class="flex flex-col items-center justify-center w-11/12 h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
+          >
+            <div class="flex flex-col items-center justify-center pt-5 pb-6">
+              <svg
+                aria-hidden="true"
+                class="w-10 h-10 mb-3 text-gray-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
+                ></path>
+              </svg>
+              <p class="mb-2 text-sm text-gray-500 dark:text-gray-400">
+                <span class="font-semibold">Upload image here</span>
+              </p>
+            </div>
+            <input
+              id="dropzone-file"
+              type="file"
+              class="hidden"
+              onChange={handleImageUpload}
+              enctype="multipart/form-data"
+              name="photo"
+            />
+          </label>
         </div>
       </div>
-    </form>
+    </div>
   );
 }
