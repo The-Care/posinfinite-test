@@ -24,9 +24,11 @@ export default function Cleany({ navigation }) {
 
   const products = useSelector((state) => state.products.allProducts);
 
-  useEffect(() => {
-    dispatch(fetchAllProducts());
-  }, []);
+  useFocusEffect(
+    React.useCallback(() => {
+      dispatch(fetchAllProducts());
+    }, [])
+  );
 
   if (!fontsLoaded) {
     return null;

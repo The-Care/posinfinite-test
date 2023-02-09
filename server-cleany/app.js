@@ -2,11 +2,14 @@ const express = require("express");
 const app = express();
 const port = 3000;
 const { Product } = require("./models/index");
+const upload = require("./middlewares/storage");
+const path = require("path");
 
 app.use(express.urlencoded({ extended: false }));
 const cors = require("cors");
 app.use(express.json());
 app.use(cors());
+app.use(express.static(path.join(__dirname, "public")));
 
 app.get("/", (req, res) => {
   res.send("Hello Worldsss!");
@@ -40,15 +43,17 @@ app.get("/product/:id", async (req, res) => {
 app.post("/add-product", async (req, res) => {
   try {
     console.log(req.body, "req body");
-    const { productName, description, sku, stock, category, price } = req.body;
+    const { productName, description, sku, stock, category, price, photo } =
+      req.body;
 
     const dataProduct = {
-      productName: productName,
+      productName,
       sku,
       stock,
       category,
       price,
       description,
+      photo,
     };
 
     console.log(dataProduct, "data buat create");
@@ -62,6 +67,17 @@ app.post("/add-product", async (req, res) => {
     });
   } catch (err) {
     throw err;
+  }
+});
+
+app.post("/upload", upload.single("photo"), async (req, res) => {
+  try {
+    const url = req.protocol + "://" + req.get("host") + "/uploads/";
+    const images = url + req.file.filename;
+
+    res.status(200).json(images);
+  } catch (error) {
+    console.log(error);
   }
 });
 
