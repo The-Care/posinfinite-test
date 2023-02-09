@@ -25,6 +25,7 @@ import {
 import Balance from "../components/Balance";
 import { useDispatch } from "react-redux";
 import { addProduct, fetchAllProducts } from "../store/actions";
+import * as Yup from "yup";
 
 export default function CleanyAdmin({ navigation }) {
   const dispatch = useDispatch();
@@ -59,6 +60,24 @@ export default function CleanyAdmin({ navigation }) {
     { label: "Others", value: "others" },
   ]);
 
+  const FormSchema = Yup.object().shape({
+    productName: Yup.string()
+      .max(10, "Must be 10 characters or less")
+      .required("Required"),
+    description: Yup.string()
+      .max(1000, "Must be 10000 characters or less")
+      .required("Required"),
+    sku: Yup.string()
+      .max(10, "Must be 10 characters or less")
+      .required("Required"),
+    stock: Yup.string()
+      .min(1, "Must be exactly 5 characters")
+      .required("Required"),
+    price: Yup.string()
+      .min(1, "Must be exactly 5 characters")
+      .required("Required"),
+  });
+
   if (!fontsLoaded) {
     return null;
   }
@@ -77,6 +96,8 @@ export default function CleanyAdmin({ navigation }) {
             category: "",
             price: "",
           }}
+          validateOnMount={true}
+          validationSchema={FormSchema}
           onSubmit={(values) => {
             console.log("terpencet");
             dispatch(addProduct(values, value))
@@ -88,7 +109,7 @@ export default function CleanyAdmin({ navigation }) {
           }}
           style={{}}
         >
-          {({ handleChange, handleBlur, handleSubmit, values }) => (
+          {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
             <ScrollView
               style={{
                 backgroundColor: "#E7F5FD",
@@ -170,6 +191,13 @@ export default function CleanyAdmin({ navigation }) {
                     onBlur={handleBlur("productName")}
                     value={values.productName}
                   />
+                  {errors.productName && (
+                    <Text
+                      style={{ marginLeft: 10, fontSize: 10, color: "red" }}
+                    >
+                      {errors.productName}
+                    </Text>
+                  )}
 
                   <Text
                     style={{
@@ -197,6 +225,13 @@ export default function CleanyAdmin({ navigation }) {
                     onBlur={handleBlur("description")}
                     value={values.description}
                   />
+                  {errors.description && (
+                    <Text
+                      style={{ marginLeft: 10, fontSize: 10, color: "red" }}
+                    >
+                      {errors.description}
+                    </Text>
+                  )}
 
                   <Text
                     style={{
@@ -223,6 +258,14 @@ export default function CleanyAdmin({ navigation }) {
                     value={values.sku}
                   />
 
+                  {errors.sku && (
+                    <Text
+                      style={{ marginLeft: 10, fontSize: 10, color: "red" }}
+                    >
+                      {errors.sku}
+                    </Text>
+                  )}
+
                   <Text
                     style={{
                       padding: 10,
@@ -248,6 +291,13 @@ export default function CleanyAdmin({ navigation }) {
                     onBlur={handleBlur("stock")}
                     value={values.stock}
                   />
+                  {errors.stock && (
+                    <Text
+                      style={{ marginLeft: 10, fontSize: 10, color: "red" }}
+                    >
+                      {errors.stock}
+                    </Text>
+                  )}
 
                   <Text
                     style={{
@@ -304,6 +354,13 @@ export default function CleanyAdmin({ navigation }) {
                     onBlur={handleBlur("price")}
                     value={values.price}
                   />
+                  {errors.price && (
+                    <Text
+                      style={{ marginLeft: 10, fontSize: 10, color: "red" }}
+                    >
+                      {errors.price}
+                    </Text>
+                  )}
                   <Button onPress={handleSubmit} title="Submit" />
                   {/* {image && (
                     <Image

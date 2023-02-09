@@ -1,3 +1,4 @@
+import React from "react";
 import { View, Text, ScrollView, TouchableWithoutFeedback } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import PreviousOrder from "../components/PreviousOrder";
@@ -13,6 +14,7 @@ import Balance from "../components/Balance";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAllProducts } from "../store/actions";
 import { useEffect } from "react";
+import { useFocusEffect } from "@react-navigation/core";
 
 export default function Cleany({ navigation }) {
   const dispatch = useDispatch();

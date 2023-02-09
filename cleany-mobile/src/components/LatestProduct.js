@@ -31,88 +31,85 @@ export default function LatestProduct({ navigation, products }) {
   ];
 
   const Item = ({ title, price, category, image, description }) => (
-    console.log(image),
-    (
-      <>
-        <TouchableWithoutFeedback
-          onPress={() =>
-            navigation.navigate("DetailProduct", {
-              price,
-              title,
-              category,
-              image,
-              description,
-            })
-          }
+    <>
+      <TouchableWithoutFeedback
+        onPress={() =>
+          navigation.navigate("DetailProduct", {
+            price,
+            title,
+            category,
+            image,
+            description,
+          })
+        }
+      >
+        <View
+          style={{
+            height: 200,
+            width: 180,
+            marginRight: 20,
+            borderRadius: 20,
+          }}
         >
-          <View
+          <ImageBackground
+            source={{
+              uri: image,
+            }}
+            resizeMode="stretch"
             style={{
-              height: 200,
-              width: 180,
-              marginRight: 20,
-              borderRadius: 20,
+              height: "100%",
+              width: "100%",
+              borderRadius: 10,
+              overflow: "hidden",
+              position: "relative",
             }}
           >
-            <ImageBackground
-              source={{
-                uri: image,
-              }}
-              resizeMode="stretch"
+            <Text
               style={{
-                height: "100%",
-                width: "100%",
-                borderRadius: 10,
-                overflow: "hidden",
-                position: "relative",
+                color: "white",
+                textAlignVertical: "bottom",
+                position: "absolute",
+                bottom: 60,
+                left: 5,
+                fontFamily: "Roboto_400Regular",
+                fontSize: 15,
+                letterSpacing: 1,
               }}
             >
-              <Text
-                style={{
-                  color: "white",
-                  textAlignVertical: "bottom",
-                  position: "absolute",
-                  bottom: 60,
-                  left: 5,
-                  fontFamily: "Roboto_400Regular",
-                  fontSize: 15,
-                  letterSpacing: 1,
-                }}
-              >
-                {category}
-              </Text>
-              <Text
-                style={{
-                  color: "white",
-                  textAlignVertical: "bottom",
-                  position: "absolute",
-                  bottom: 30,
-                  left: 5,
-                  fontFamily: "Roboto_700Bold",
-                  fontSize: 28,
-                  letterSpacing: 1,
-                }}
-              >
-                {title}
-              </Text>
-              <Text
-                style={{
-                  color: "white",
-                  textAlignVertical: "bottom",
-                  position: "absolute",
-                  bottom: 10,
-                  left: 5,
-                  fontFamily: "Roboto_400Regular",
-                  fontSize: 20,
-                  letterSpacing: 1,
-                }}
-              >
-                $ {price}/pc
-              </Text>
-            </ImageBackground>
-          </View>
-        </TouchableWithoutFeedback>
-      </>
-    )
+              {category}
+            </Text>
+            <Text
+              style={{
+                color: "white",
+                textAlignVertical: "bottom",
+                position: "absolute",
+                bottom: 30,
+                left: 5,
+                fontFamily: "Roboto_700Bold",
+                fontSize: 28,
+                letterSpacing: 1,
+              }}
+            >
+              {title}
+            </Text>
+            <Text
+              style={{
+                color: "white",
+                textAlignVertical: "bottom",
+                position: "absolute",
+                bottom: 10,
+                left: 5,
+                fontFamily: "Roboto_400Regular",
+                fontSize: 20,
+                letterSpacing: 1,
+              }}
+            >
+              $ {price}/pc
+            </Text>
+          </ImageBackground>
+        </View>
+      </TouchableWithoutFeedback>
+    </>
   );
 
   if (!fontsLoaded) {

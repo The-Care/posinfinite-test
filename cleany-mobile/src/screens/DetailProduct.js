@@ -45,7 +45,9 @@ export default function DetailProduct({ navigation, route, Item }) {
           }}
         >
           <ImageBackground
-            source={image}
+            source={{
+              uri: image,
+            }}
             resizeMode="stretch"
             style={{
               height: "100%",

@@ -35,9 +35,6 @@ export default function CreateProduct() {
       stock: Yup.string()
         .min(1, "Must be exactly 5 characters")
         .required("Required"),
-      category: Yup.string()
-        .max(10, "Must be 10 characters or less")
-        .required("Required"),
       price: Yup.string()
         .min(1, "Must be exactly 5 characters")
         .required("Required"),
