@@ -362,12 +362,13 @@ export default function CleanyAdmin({ navigation }) {
                     </Text>
                   )}
                   <Button onPress={handleSubmit} title="Submit" />
-                  {/* {image && (
+                  <Button title="Picking image" onPress={pickImage} />
+                  {image && (
                     <Image
                       source={{ uri: image }}
                       style={{ width: 200, height: 200 }}
                     />
-                  )} */}
+                  )}
                   <TouchableWithoutFeedback
                     onPress={() => navigation.navigate("Cleany")}
                   >
